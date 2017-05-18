@@ -76,7 +76,7 @@
       rs = pstmt.executeQuery();
       while ( rs.next() ) {
         Map<String, String> row = mapFromRS(rs);
-        System.out.println("row data "+row);
+        //System.out.println("row data "+row);
         data.add(row);
       }
     } finally {
@@ -259,6 +259,21 @@
  * 增加，修改后台验证
  */
   public String formvalidate( HttpServletRequest request ) throws Exception
+  {
+    String result = "";
+    List<String> list = new ArrayList<>();
+    list.add("authorname");
+    list.add("authorage");
+    for ( String param : list ) {
+      String paramvalue = request.getParameter(param);
+      if ( paramvalue == null || paramvalue.trim().length() == 0 ) {
+        result = param + "不能为空";
+        break;
+      }
+    }
+    return result;
+  }
+ public String book_formvalidate( HttpServletRequest request ) throws Exception
   {
     String result = "";
     List<String> list = new ArrayList<>();

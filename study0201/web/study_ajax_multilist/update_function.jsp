@@ -13,7 +13,7 @@
     String id = request.getParameter("id");
     String date_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()); //获取系统时间   
     //拼接SQL语句  true代表取出来是数组，需要另行处理
-    String validateresult = formvalidate(request);
+    String validateresult = book_formvalidate(request);
     if ( validateresult.trim().length() == 0 ) {
       set = buildUpdateSet(param_values, request, set, "name", "name", false);
       if ( status.equals("1") || status.equals("0") ) {

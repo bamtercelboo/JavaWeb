@@ -9,10 +9,10 @@
     try {
     //连接数据库
     conn = getConnection();
-    String sql = "SELECT * FROM nccp_authors ";
+    String sql = "SELECT a.*, a.name author_name FROM nccp_authors a";
     String where = "";
     List<String> param_values = new ArrayList<>();
-    where = buildQueryWhere(param_values, request, where, "author_name", "author_name", "LIKE");
+    where = buildQueryWhere(param_values, request, where, "author_name", "name", "LIKE");
      if ( where.length() > 0 ) {
       sql = sql + " WHERE "+where;
      }

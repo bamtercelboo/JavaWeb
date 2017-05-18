@@ -9,7 +9,7 @@
   try {
     //连接数据库
     conn = getConnection();
-    String sql = "SELECT a.* ,b.*, a.au_id auhtorid, b.id bookid, a.name author_name, b.name book_name FROM nccp_authors a,nccp_books b WHERE a.au_id = b.author_id AND b.id = ? ";
+    String sql = "SELECT * FROM nccp_authors WHERE au_id = ?";
     List<String> list = new ArrayList<>();
     list.add(ID);
     data = querySingleRow(conn, sql, list);

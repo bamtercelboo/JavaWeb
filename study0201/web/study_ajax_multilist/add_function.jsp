@@ -20,7 +20,7 @@
     conn = getConnection();
     String sql = "INSERT INTO nccp_books (`name`,`status`,`type`,`isbn`,`publish`,`price`,`author_id`,`modified`,`created`,`memo`) VALUES (?,?,?,?,?,?,?,?,?,?)";
     //添加参数到list
-    String validateresult = formvalidate(request);
+    String validateresult = book_formvalidate(request);
     if( validateresult.trim().length() == 0 ){
     List<String> list = new ArrayList<>();
     list.add(name);

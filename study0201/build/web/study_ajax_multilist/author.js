@@ -1,5 +1,5 @@
 //每页显示的数量
-var PAGE_SIZE = 15;
+var PAGE_SIZE = 5;
 //总页数
 var total_pages = 1;
 var totalpages = 0;
@@ -19,6 +19,7 @@ var sortcolname = "";
  * @description 整体加载完之后调用加载相关函数
  */
 $(function () {
+  
   //每一个标题th都绑定click事件
   $(".title th").bind("click", function () {
     sortkey = $(this).attr("sortkey");
@@ -33,16 +34,12 @@ $(function () {
   //点击insert 显示弹框
   $('#btn_insert').click(function () {
     //置空
-    $("input[name='upid']").val("");
-    $("input[name='upname']").val("");
-    $("input[name='upstatus']").attr("checked", false);
-    $("input[name='upstatus']").get(0).checked = true;//设置默认
-    $("[name='uptype']").removeAttr("checked");//取消全选  
-    $("input[name='upprice']").val("");
-    $("input[name='uppublish']").val("");
-    $("input[name='upisbn']").val("");
-    $("input[name='upauthor']").val("");
-    $("#upmemo").val("");
+    $("input[name='authorid']").val("");
+    $("input[name='authorname']").val("");
+    $("input[name='authorsex']").attr("checked", false);
+    //$("input[name='authorsex']").get(0).checked = true;//设置默认
+    $("input[name='authorage']").val("");
+    $("#authormemo").val("");
     //显示增加button
     $("#add_button").show();
     //隐藏测试数据button
@@ -56,30 +53,6 @@ $(function () {
     $('#adddiv').draggable();
   });
   
-  //测试数据button
-  $('#test_insert').click(function () {
-    //置空
-    $("input[name='upid']").val("");
-    $("input[name='upname']").val("");
-    $("input[name='upstatus']").attr("checked", false);
-    $("[name='uptype']").removeAttr("checked");//取消全选  
-    $("input[name='upprice']").val("");
-    $("input[name='uppublish']").val("");
-    $("input[name='upisbn']").val("");
-    $("input[name='upauthor']").val("");
-    $("#upmemo").val("");
-    //显示测试button
-    $("#test_button").show();
-    //隐藏增加button
-    $("#add_button").hide();
-    //隐藏修改button
-    $("#update_button").hide();
-    //隐藏表单进入
-    $('#addbg').fadeIn();
-    $('#adddiv').fadeIn();
-    //弹框拖拽
-    $('#adddiv').draggable();
-  });
   //关闭弹窗
   $('#addclosehref').click(function () {
     $('#adddiv').fadeOut(function () {
@@ -98,25 +71,17 @@ $(function () {
 function search( page ) {
   //获取条件查询文本框值
   var name = $("input[name='name']").val();
-  var status = $("input[name='status']:checked").val();
-  var minprice = $("input[name='minprice']").val();
-  var maxprice = $("input[name='maxprice']").val();
-  var publish = $("input[name='publish']").val();
-  var isbn = $("input[name='isbn']").val();
-  var author = $("input[name='author']").val();
-  var author_sex = $("select[name='author_sex']").val();
+  var authorsex = $("input[name='authorssex']:checked").val();
+  var minage = $("input[name='minage']").val();
+  var maxage = $("input[name='maxage']").val();
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/search.jsp",
+    url: "/study0201/study_ajax_multilist/author_search.jsp",
     data: {
       name: name,
-      status: status,
-      minprice: minprice,
-      maxprice: maxprice,
-      publish: publish,
-      isbn: isbn,
-      author: author,
-      author_sex: author_sex,
+      authorsex: authorsex,
+      minage: minage,
+      maxage: maxage,
       page: page,
       sortcolname: sortcolname,
       sortkey: sortkey
@@ -132,21 +97,15 @@ function search( page ) {
       //拼接html 生成新的table数据元素并添加到table中
       for ( var i = 0; i < data.length; i++ ) {
         html += '<tr class="' + ((i % 2) == "0" ? "evencolor" : "oddcolor") + '" id="row" onclick = "rowchecked(this);">';
-        html += '<td><input type="checkbox" name="id" value = "' + data[i].bookid + '"/></td>';
-        html += "<td>" + data[i].bookid + "</td>";
-        html += "<td>" + data[i].book_name + "</td>";
-        html += "<td>" + ((data[i].status) == "0" ? "下架" : ((data[i].status) == "1" ? "在售" : "")) + "</td>";
-        html += "<td>" + data[i].type + "</td>";
-        html += "<td>" + data[i].isbn + "</td>";
-        html += "<td>" + data[i].publish + "</td>";
-        html += "<td>" + data[i].price + "</td>";
-        html += "<td>" + data[i].author_name + "</td>";
+        html += '<td><input type="checkbox" name="id" value = "' + data[i].au_id + '"/></td>';
+        html += "<td>" + data[i].au_id + "</td>";
+        html += "<td>" + data[i].name + "</td>";
         html += "<td>" + ((data[i].author_sex) == "f" ? "女" : ((data[i].author_sex) == "m" ? "男" : "")) + "</td>";
         html += "<td>" + data[i].author_age + "</td>";
-        html += "<td>" + data[i].modified + "</td>";
-        html += "<td>" + data[i].created + "</td>";
-        html += "<td>" + data[i].book_memo + "</td>";
-        html += '<td><a href = "javascript:update(' + data[i].bookid + ');">修改</a></td>';
+        html += "<td>" + data[i].author_created + "</td>";
+        html += "<td>" + data[i].author_modified + "</td>";
+        html += "<td>" + ((data[i].memo) == null ? "" : ((data[i].memo))) + "</td>";
+        html += '<td><a href = "javascript:update(' + data[i].au_id + ');">修改</a></td>';
         html += "</tr>";
       }
       $("#tbody").append(html);
@@ -342,14 +301,10 @@ function goto( page )
 function reset()
 {
   $("#name").val("");
-  $("#minprice").val("");
-  $("#maxprice").val("");
-  $("input:radio[name='status']").get(1).checked = false;
-  $("input:radio[name='status']").get(0).checked = false;
-  $("#publish").val("");
-  $("#isbn").val("");
-  $("#author").val("");
-  $("#author_sex").val("");
+  $("#minage").val("");
+  $("#maxage").val("");
+  $("input:radio[name='authorssex']").get(1).checked = false;
+  $("input:radio[name='authorssex']").get(0).checked = false;
 }
 
 /**
@@ -368,7 +323,7 @@ function confirmDelete()
     if ( confirm("确认删除？") ) {
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/delete_function.jsp",
+        url: "/study0201/study_ajax_multilist/author_delete_function.jsp",
         data: 'id=' + chk_value,
         dataType: 'json',
         success: function ( data ) {
@@ -439,43 +394,24 @@ function update( id )
   $("#test_button").hide();
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/select_single.jsp",
+    url: "/study0201/study_ajax_multilist/author_select_single.jsp",
     data: {
       id: id
     },
     dataType: 'json',
     success: function ( data ) {
       var i = 0;
-      $("input[name='upid']").val(id);
-      $("input[name='upname']").val(data[i].book_name);
-      $("input[name='upisbn']").val(data[i].isbn);
-      $("input[name='uppublish']").val(data[i].publish);
-      $("input[name='upprice']").val(data[i].price);
-      $("input[name='upauthor']").val(data[i].author_name);
-      $("input[name='upauthor_id']").val(data[i].author_id);
-      $("#upmemo").val(data[i].memo);
+      $("input[name='authorid']").val(id);
+      $("input[name='authorname']").val(data[i].name);
+     // $("input[name='authorsex']").val(data[i].author_sex);
+      $("input[name='authorage']").val(data[i].author_age);
+      $("#authormemo").val(data[i].memo);
       //status radio
-      if ( data[i].status == "0" ) {
-        $("input:radio[name='upstatus']").get(1).checked = true;
+      if ( data[i].author_sex == "m" ) {
+        $("input:radio[name='authorsex']").get(1).checked = true;
       } else {
-        $("input:radio[name='upstatus']").get(0).checked = true;
-      }
-      //type checkbox 
-      $("input[name='uptype']").each(function () {
-        $(this).attr('checked', false);
-      });
-      if ( isContains(data[i].type.toString(), "武侠") ) {
-        $("input:checkbox[name='uptype']").get(0).checked = true;
-      }
-      if ( isContains(data[i].type.toString(), "言情") ) {
-        $("input:checkbox[name='uptype']").get(1).checked = true;
-      }
-      if ( isContains(data[i].type.toString(), "校园") ) {
-        $("input:checkbox[name='uptype']").get(2).checked = true;
-      }
-      if ( isContains(data[i].type.toString(), "经典") ) {
-        $("input:checkbox[name='uptype']").get(3).checked = true;
-      }
+        $("input:radio[name='authorsex']").get(0).checked = true;
+      }   
       $('#addbg').fadeIn();
       $('#adddiv').fadeIn();
       //调用函数 先解除绑定click事件，再绑定click事件
@@ -509,39 +445,22 @@ function insert()
   //验证信息是否合理 validate_info()
   if ( validate_info() ) {
     //取值
-    var id = $("input[name='upid']").val();
+    var id = $("input[name='authorid']").val();
     //获取条件查询文本框值
-    var name = $("input[name='upname']").val();
-    var status = $("input[name='upstatus']:checked").val();
-    var typeall = "";
-    $("input[name='uptype']").each(function ()
-    {
-      if ( $(this).attr('checked') == "checked" ) {
-        typeall += $(this).val() + ",";
-      }
-    });
-    var type = typeall.substring(0, typeall.length - 1)
-    var price = $("input[name='upprice']").val();
-    var publish = $("input[name='uppublish']").val();
-    var isbn = $("input[name='upisbn']").val();
-    var author_name = $("input[name='upauthor']").val();
-    var author_id = $("input[name='upauthor_id']").val();
-    var memo = $("#upmemo").val();
+    var authorname = $("input[name='authorname']").val();
+    var authorsex = $("input[name='authorsex']:checked").val();
+    var authorage = $("input[name='authorage']").val();
+    var authormemo = $("#authormemo").val();
     //若id为空走insert方法，否则走update方法
     if ( id == null || id == "" ) {
-       $(".title th").attr("sortkey","");
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/add_function.jsp",
+        url: "/study0201/study_ajax_multilist/author_add_function.jsp",
         data: {
-          name: name,
-          status: status,
-          type: type,
-          price: price,
-          publish: publish,
-          isbn: isbn,
-          author_id: author_id,
-          memo: memo
+          authorname: authorname,
+          authorsex: authorsex,
+          authorage: authorage,
+          authormemo: authormemo
         },
         dataType: 'text',
         success: function ( data ) {
@@ -565,18 +484,13 @@ function insert()
     } else {
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/update_function.jsp",
-        data: {
-          id: id,
-          name: name,
-          status: status,
-          type: type,
-          price: price,
-          publish: publish,
-          isbn: isbn,
-          author_name: author_name,
-          author_id: author_id,
-          memo: memo
+        url: "/study0201/study_ajax_multilist/author_update_function.jsp",
+         data: {
+           id:id,
+          authorname: authorname,
+          authorsex: authorsex,
+          authorage: authorage,
+          authormemo: authormemo
         },
         dataType: 'text',
         success: function ( data ) {
@@ -655,42 +569,23 @@ function test_insert()
  */
 function validate_info()
 {
-  var name = $("input[name='upname']").val();
-  if ( name == "" ) {
-    alert("请输入名称");
+  var authorname = $("input[name='authorname']").val();
+  if ( authorname == "" ) {
+    alert("请输入姓名");
     return false;
   }
-  var status = $("input[name='upstatus']:checked").val();
-  if ( !(status == "1" || status == "0") ) {
-    alert("请选择状态");
+  var authorsex = $("input[name='authorsex']:checked").val();
+  if ( !(authorsex == "f" || authorsex == "m") ) {
+    alert("请选择性别");
     return false;
   }
-  var isbn = $("input[name='upisbn']").val();
-  if ( isbn == "" ) {
-    alert("请输入ISBN");
+  var authorage = $("input[name='authorage']").val();
+  if ( authorage == "" ) {
+    alert("请输入年龄");
     return false;
   }
-  var publish = $("input[name='uppublish']").val();
-  if ( publish == "" ) {
-    alert("请输入出版社");
-    return false;
-  }
-  var price = $("input[name='upprice']").val();
-  if ( price == "" ) {
-    alert("请输入书本价格");
-    return false;
-  }
-  if ( !isNumber(price) ) {
-    alert("书本价格,请输入数字");
-    return false;
-  }
-  if ( !priceLength(price) ) {
-    alert("价格不合理");
-    return false;
-  }
-  var author = $("input[name='upauthor']").val();
-  if ( author == "" ) {
-    alert("请输入作者");
+  if ( !isNumber(authorage) ) {
+    alert("作者年龄,请输入数字");
     return false;
   }
   return true;

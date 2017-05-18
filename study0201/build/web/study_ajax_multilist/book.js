@@ -1,5 +1,5 @@
 //每页显示的数量
-var PAGE_SIZE = 20;
+var PAGE_SIZE = 15;
 //总页数
 var total_pages = 1;
 var totalpages = 0;
@@ -19,7 +19,6 @@ var sortcolname = "";
  * @description 整体加载完之后调用加载相关函数
  */
 $(function () {
-  
   //每一个标题th都绑定click事件
   $(".title th").bind("click", function () {
     sortkey = $(this).attr("sortkey");
@@ -135,7 +134,7 @@ function search( page ) {
         html += '<tr class="' + ((i % 2) == "0" ? "evencolor" : "oddcolor") + '" id="row" onclick = "rowchecked(this);">';
         html += '<td><input type="checkbox" name="id" value = "' + data[i].bookid + '"/></td>';
         html += "<td>" + data[i].bookid + "</td>";
-        html += "<td>" + data[i].name + "</td>";
+        html += "<td>" + data[i].book_name + "</td>";
         html += "<td>" + ((data[i].status) == "0" ? "下架" : ((data[i].status) == "1" ? "在售" : "")) + "</td>";
         html += "<td>" + data[i].type + "</td>";
         html += "<td>" + data[i].isbn + "</td>";
@@ -146,7 +145,7 @@ function search( page ) {
         html += "<td>" + data[i].author_age + "</td>";
         html += "<td>" + data[i].modified + "</td>";
         html += "<td>" + data[i].created + "</td>";
-        html += "<td>" + data[i].memo + "</td>";
+        html += "<td>" + data[i].book_memo + "</td>";
         html += '<td><a href = "javascript:update(' + data[i].bookid + ');">修改</a></td>';
         html += "</tr>";
       }
@@ -448,7 +447,7 @@ function update( id )
     success: function ( data ) {
       var i = 0;
       $("input[name='upid']").val(id);
-      $("input[name='upname']").val(data[i].name);
+      $("input[name='upname']").val(data[i].book_name);
       $("input[name='upisbn']").val(data[i].isbn);
       $("input[name='uppublish']").val(data[i].publish);
       $("input[name='upprice']").val(data[i].price);
@@ -530,6 +529,7 @@ function insert()
     var memo = $("#upmemo").val();
     //若id为空走insert方法，否则走update方法
     if ( id == null || id == "" ) {
+       $(".title th").attr("sortkey","");
       $.ajax({
         type: "post",
         url: "/study0201/study_ajax_multilist/add_function.jsp",
