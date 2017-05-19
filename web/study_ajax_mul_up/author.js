@@ -28,6 +28,8 @@ $(function () {
   var left_width = (brower_width / 2) - (div_width / 2);
   $("#adddiv").css("top", top_height);
   $("#adddiv").css("left", left_width);
+  $(".searchparam").css("width",1700);
+  $(".data").css("width",1700);
   $(window).resize(function () {
     var browser_height = document.body.clientHeight
     var brower_width = document.body.clientWidth;
@@ -37,6 +39,7 @@ $(function () {
     var left_width = (brower_width / 2) - (div_width / 2);
     $("#adddiv").css("top", top_height);
     $("#adddiv").css("left", left_width);
+    $(".data").css("width",brower_width-40);
   });
   
   //每一个标题th都绑定click事件
@@ -594,21 +597,37 @@ function validate_info()
   var authorname = $("input[name='authorname']").val();
   if ( authorname == "" ) {
     alert("请输入姓名");
+    $("input[name='authorname']").focus();
+    $("input[name='authorname']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='authorname']").removeClass("inputerror");
   }
   var authorsex = $("input[name='authorsex']:checked").val();
   if ( !(authorsex == "f" || authorsex == "m") ) {
     alert("请选择性别");
+    $("input[name='authorsex']").focus();
+    $("input[name='authorsex']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='authorsex']").removeClass("inputerror");
   }
   var authorage = $("input[name='authorage']").val();
   if ( authorage == "" ) {
     alert("请输入年龄");
+    $("input[name='authorage']").focus();
+    $("input[name='authorage']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='authorage']").removeClass("inputerror");
   }
   if ( !isNumber(authorage) ) {
     alert("作者年龄,请输入数字");
+    $("input[name='authorage']").focus();
+    $("input[name='authorage']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='authorage']").removeClass("inputerror");
   }
   return true;
 }

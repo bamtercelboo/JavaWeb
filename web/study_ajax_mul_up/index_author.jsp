@@ -10,7 +10,7 @@
     <link href="author.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-    <div class="authorsearchparam">
+    <div class="searchparam">
       <input type="hidden" id="page" name="page" value="1"/>
       姓名 <input type="text" name="name" id="name" style="width:100px;"/>
       年龄   <input type="text" name="minage" id="minage"  style="width:40px;" />---<input type="text" name="maxage" id="maxage"  style="width:40px;" />
@@ -18,20 +18,20 @@
       <input type="button" name="search"  value="search" style="width:100px;" onclick="search();"/>
       <input type="button" name="reset" value="reset" onclick="reset();" style="width:100px;"/>
     </div>
-    <div>
+    <div class="data">
       <input type="button" value="Insert" style="width:100px;" id="btn_insert"  />
       <input type="button" value="Delete" onclick="confirmDelete()" style="width:100px;"/>
       <table id ="table" border="1" bordercolor="#000000" style="border-collapse:collapse;" cellpadding="5">
         <tr class="title">
-          <th  width="1%"><input type="checkbox" id="selectAll" name="selectAll"  onclick="toselectAll();"/></th>
-          <th sortcolname="au_id" width="2%">ID</th>
-          <th sortcolname="name" width="6%">姓名</th>
-          <th sortcolname="author_sex" width="3%">性别</th>
-          <th sortcolname="author_age" width="8%">年龄</th>
-          <th sortcolname="author_created" width="7%">创建时间</th>
-          <th sortcolname="author_modified" width="7%">最后修改时间</th>
+          <th ><input type="checkbox" id="selectAll" name="selectAll"  onclick="toselectAll();"/></th>
+          <th sortcolname="au_id">ID</th>
+          <th sortcolname="name">姓名</th>
+          <th sortcolname="author_sex">性别</th>
+          <th sortcolname="author_age">年龄</th>
+          <th sortcolname="author_created">创建时间</th>
+          <th sortcolname="author_modified">最后修改时间</th>
           <th sortcolname="memo" width="13%" style="word-wrap:break-word;">备注</th>
-          <th width="2%">操作</th>
+          <th>操作</th>
         </tr>
         <tbody id="tbody">
         </tbody>

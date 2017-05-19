@@ -29,6 +29,8 @@ $(function () {
   var left_width = (brower_width / 2) - (div_width / 2);
   $("#adddiv").css("top", top_height);
   $("#adddiv").css("left", left_width);
+  $(".searchparam").css("width",1700);
+  $(".data").css("width",1700);
   $(window).resize(function () {
     var browser_height = document.body.clientHeight
     var brower_width = document.body.clientWidth;
@@ -38,6 +40,7 @@ $(function () {
     var left_width = (brower_width / 2) - (div_width / 2);
     $("#adddiv").css("top", top_height);
     $("#adddiv").css("left", left_width);
+    $(".data").css("width",brower_width-40);
   });
   
   //每一个标题th都绑定click事件
@@ -279,7 +282,7 @@ function pagehref( total_count, curr_page )
   if ( total_pages <= curr_page ) {
     curr_page = total_pages;
   }
-  var html = "";
+  var html = '<div class="pagehref">';
   //当前页是首页，首页、上一页都不能点击
   if ( curr_page == 1 || curr_page == 0 ) {
     html += "首页&nbsp;&nbsp;";
@@ -348,6 +351,7 @@ function pagehref( total_count, curr_page )
   if ( count >= 2 ) {
     $("#tbody1").empty();
   }
+  html += "</div>";
   $("#tbody1").append(html);
   //设置全局变量currpage（当前页）和totalpages（总页数）完成删除，修改，增加的异步刷新
   currpage = curr_page;
@@ -688,40 +692,72 @@ function validate_info()
   var name = $("input[name='upname']").val();
   if ( name == "" ) {
     alert("请输入名称");
+    $("input[name='upname']").focus();
+    $("input[name='upname']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='upname']").removeClass("inputerror");
   }
   var status = $("input[name='upstatus']:checked").val();
   if ( !(status == "1" || status == "0") ) {
     alert("请选择状态");
+    $("input[name='upstatus']").focus();
+    $("input[name='upstatus']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='upstatus']").removeClass("inputerror");
   }
   var isbn = $("input[name='upisbn']").val();
   if ( isbn == "" ) {
     alert("请输入ISBN");
+    $("input[name='upisbn']").focus();
+    $("input[name='upisbn']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='upisbn']").removeClass("inputerror");
   }
   var publish = $("input[name='uppublish']").val();
   if ( publish == "" ) {
     alert("请输入出版社");
+    $("input[name='uppublish']").focus();
+    $("input[name='uppublish']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='uppublish']").removeClass("inputerror");
   }
   var price = $("input[name='upprice']").val();
   if ( price == "" ) {
     alert("请输入书本价格");
+    $("input[name='upprice']").focus();
+    $("input[name='upprice']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='upprice']").removeClass("inputerror");
   }
   if ( !isNumber(price) ) {
     alert("书本价格,请输入数字");
+    $("input[name='upprice']").focus();
+    $("input[name='upprice']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='upprice']").removeClass("inputerror");
   }
   if ( !priceLength(price) ) {
     alert("价格不合理");
+    $("input[name='upprice']").focus();
+    $("input[name='upprice']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='upprice']").removeClass("inputerror");
   }
   var author = $("input[name='upauthor']").val();
   if ( author == "" ) {
     alert("请输入作者");
+    $("input[name='upauthor']").focus();
+    $("input[name='upauthor']").addClass("inputerror");
     return false;
+  } else {
+    $("input[name='upauthor']").removeClass("inputerror");
   }
   return true;
 }

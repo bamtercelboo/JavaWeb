@@ -1,10 +1,13 @@
 #addbg{width:100%;height:100%;background-color:#000000;opacity:.6;filter:alpha(opacity=60);position:fixed;top:0;left:0;display: none;}
 #adddiv{margin-left: 50%;width:400px;height:484px;margin:0 auto;background-color:whitesmoke;position:absolute;border:2px solid #ccc;border-radius:10px;display: none;}
 #addclose{width:100%;margin:0 auto;text-align:right;}
-.addTable{margin-left: 8%;margin-right: 24%;}
+.addTable{margin-left: 6%;margin-right: 24%;}
 .evencolor{background-color: blanchedalmond;}
 .oddcolor{background-color: whitesmoke;}
 .rowchecked{background-color:greenyellow;}
 .oddcolor:hover{background-color:gold;}
 .evencolor:hover{background-color:gold;}
 .textarea{height: 500px;overflow: scroll}
+.inputerror{background-color:red;}
+.searchparam{margin-right:5%;}
+.data{margin-right:5%;}

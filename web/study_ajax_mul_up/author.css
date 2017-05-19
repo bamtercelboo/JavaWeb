@@ -8,3 +8,6 @@
 .oddcolor:hover{background-color:gold;}
 .evencolor:hover{background-color:gold;}
 .textarea{height: 500px;overflow: scroll}
+.inputerror{background-color:red;}
+.searchparam{margin-right:5%;}
+.data{margin-right:5%;}

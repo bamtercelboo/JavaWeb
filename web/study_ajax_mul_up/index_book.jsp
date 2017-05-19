@@ -27,27 +27,27 @@
       <input type="button" name="search"  value="search" style="width:100px;" onclick="search();"/>
       <input type="button" name="reset" value="reset" onclick="reset();" style="width:100px;"/>
     </div>
-    <div>
+    <div class="data">
       <input type="button" value="Insert" style="width:100px;" id="btn_insert"  />
       <input type="button" value="Delete" onclick="confirmDelete()" style="width:100px;"/>
       <input type="button" value="测试数据" style="width:100px;" id="test_insert"  />
       <table id ="table" border="1" bordercolor="#000000" style="border-collapse:collapse;" cellpadding="5">
         <tr class="title">
-          <th  width="1%"><input type="checkbox" id="selectAll" name="selectAll"  onclick="toselectAll();"/></th>
-          <th sortcolname="bookid" width="2%">ID</th>
-          <th sortcolname="book_name" width="6%">名称</th>
-          <th sortcolname="status" width="3%">状态</th>
-          <th sortcolname="type" width="8%">类型</th>
-          <th sortcolname="isbn" width="6%">ISBN</th>
-          <th sortcolname="publish" width="6%">出版社</th>
-          <th sortcolname="price" width="2%">价格</th>
-          <th sortcolname="author_name" width="3%">作者</th>
-          <th sortcolname="author_sex" width="2%">性别</th>
-          <th sortcolname="author_age" width="2%">年龄</th>
-          <th sortcolname="modified" width="7%">最后修改时间</th>
-          <th sortcolname="created" width="7%">创建时间</th>
-          <th sortcolname="memo" width="13%" style="word-wrap:break-word;">备注</th>
-          <th width="2%">操作</th>
+          <th><input type="checkbox" id="selectAll" name="selectAll"  onclick="toselectAll();"/></th>
+          <th sortcolname="bookid">ID</th>
+          <th sortcolname="book_name" >名称</th>
+          <th sortcolname="status">状态</th>
+          <th sortcolname="type" >类型</th>
+          <th sortcolname="isbn" >ISBN</th>
+          <th sortcolname="publish" >出版社</th>
+          <th sortcolname="price">价格</th>
+          <th sortcolname="author_name" >作者</th>
+          <th sortcolname="author_sex" >性别</th>
+          <th sortcolname="author_age">年龄</th>
+          <th sortcolname="modified">最后修改时间</th>
+          <th sortcolname="created">创建时间</th>
+          <th sortcolname="memo"width="13%" style="word-wrap:break-word;">备注</th>
+          <th>操作</th>
         </tr>
         <tbody id="tbody">
         </tbody>
@@ -100,7 +100,8 @@
         <tr>
           <td align="right">作者：</td>
           <td>
-            <input type="text" name="upauthor"  id="upauthor" style="width: 100px" list="upauthorinfo"  onkeyup="select_authorinfo();"/> 
+            <input type="text" name="upauthor"  id="upauthor" style="width: 163px" list="upauthorinfo"  onkeyup="select_authorinfo();"/> 
+            <input type="button" name="authorinfo" id="authorinfo" value="AuthorInfo" style="align:right">
             <input type="hidden" name="upauthor_id"  id="upauthor_id" style="width: 0px"/> 
             <div  id="upauthor_name" style="position:absolute;top:317px;left:210px; background-color: wheat; width:250px;height:100px;overflow:auto;display:none;"></div>
             <!-- <datalist id="upauthorinfo"></datalist>-->
