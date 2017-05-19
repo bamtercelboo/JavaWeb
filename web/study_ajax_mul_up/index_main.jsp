@@ -6,8 +6,8 @@
     <title>AJAX_Author_Book_Mangement</title>
   </head>
   <frameset cols="170,*">
-    <frame name="index" src="index_frame.jsp" />
-    <frame name="content" src="b.jpg"/>
+    <frame id = "index" name="index" src="index_frame.jsp" />
+    <frame id = "content" name="content" src="b.jpg"/>
   </frameset>
   <body>
   </body

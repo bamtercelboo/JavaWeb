@@ -19,6 +19,27 @@ var sortcolname = "";
  * @description 整体加载完之后调用加载相关函数
  */
 $(function () {
+
+  //insert div 位置
+  var browser_height = document.body.clientHeight
+  var brower_width = document.body.clientWidth;
+  var div_height = $("#adddiv").height();
+  var div_width = $("#adddiv").width();
+  var top_height = (browser_height / 2) - (div_height / 2);
+  var left_width = (brower_width / 2) - (div_width / 2);
+  $("#adddiv").css("top", top_height);
+  $("#adddiv").css("left", left_width);
+  $(window).resize(function () {
+    var browser_height = document.body.clientHeight
+    var brower_width = document.body.clientWidth;
+    var div_height = $("#adddiv").height();
+    var div_width = $("#adddiv").width();
+    var top_height = (browser_height / 2) - (div_height / 2);
+    var left_width = (brower_width / 2) - (div_width / 2);
+    $("#adddiv").css("top", top_height);
+    $("#adddiv").css("left", left_width);
+  });
+  
   //每一个标题th都绑定click事件
   $(".title th").bind("click", function () {
     sortkey = $(this).attr("sortkey");
