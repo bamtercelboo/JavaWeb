@@ -1,0 +1,17 @@
+SMAP
+index_005fbook_jsp.java
+JSP
+*S JSP
+*F
++ 0 index_book.jsp
+study_ajax_mul_up/index_book.jsp
++ 1 connect_mysql.jsp
+study_ajax_mul_up/connect_mysql.jsp
+*L
+1:338
+1#1,2:339
+6,2:343
+7:345
+12,283:16
+2#0,162:346
+*E

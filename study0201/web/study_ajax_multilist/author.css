@@ -1,5 +1,5 @@
 #addbg{width:100%;height:100%;background-color:#000000;opacity:.6;filter:alpha(opacity=60);position:fixed;top:0;left:0;z-index:9999;display: none;}
-#adddiv{margin-left: 50%;width:570px;height:500px;margin:0 auto;background-color:#ffffff;position:fixed;top:35%;left:35%;z-index:10000;border:2px solid #ccc;border-radius:10px;display: none;}
+#adddiv{margin-left: 50%;width:570px;height:500px;margin:0 auto;background-color:#ffffff;position:fixed;top:25%;left:35%;z-index:10000;border:2px solid #ccc;border-radius:10px;display: none;}
 #addclose{width:60%;margin:0 auto;text-align:right;}
 .addTable{margin-left: 24%;margin-right: 24%;}
 .evencolor{background-color: blanchedalmond;}

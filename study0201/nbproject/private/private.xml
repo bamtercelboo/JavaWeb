@@ -3,30 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/author_update_function.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/index_frame.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/author_add_function.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax/update_function.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/author_delete_function.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/connect_mysql.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax/book.js</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/index_author.jsp</file>
             <file>file:/D:/workspace/study0201/web/study_ajax_multilist/index_main.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax/select_single.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/test.js</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/author.css</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/book.js</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/search.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/update_function.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/select_single.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/select_authorinfo.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax/search.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax/index.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/author_search.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/index_book.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/add_function.jsp</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/author.js</file>
-            <file>file:/D:/workspace/study0201/web/study_ajax_multilist/author_select_single.jsp</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/book.css</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/jquery-ui.js</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/author.css</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/author_add_function.jsp</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/book.js</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/index_main.jsp</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/index_frame.jsp</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/index_book.jsp</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/author.js</file>
+            <file>file:/D:/workspace/study0201/web/study_ajax_mul_up/index_author.jsp</file>
         </group>
     </open-files>
 </project-private>

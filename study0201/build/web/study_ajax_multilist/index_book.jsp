@@ -64,20 +64,20 @@
       </div>
       <input type="hidden" name="upid" />
       <input type="hidden" name="created" value=""/>
-      <table border="1" bordercolor="#000000" style="border-collapse:collapse; width: 250px" cellpadding="5" class="addTable" >
+      <table border="1" bordercolor="#000000" style="border-collapse:collapse; width: 340px" cellpadding="5" class="addTable" >
         <tr>
           <th colspan="2">书本信息</th>
         </tr>
         <tr>
-          <td>名称：</td>
+          <td align="right" >名称：</td>
           <td><input type="text" name="upname" style="width: 250px"/></td>
         </tr>
         <tr>
-          <td>状态：</td>
+          <td align="right">状态：</td>
           <td><input type="radio" name="upstatus" value="1" checked="checked"/>在售(1)<input type="radio" name="upstatus" value="0" id="status"/>下架(0)</td>
         </tr>
         <tr>
-          <td>类型：</td>
+          <td align="right">类型：</td>
           <td>
             <input type="checkbox" name="uptype" value="武侠"/>武侠&nbsp;
             <input type="checkbox" name="uptype" value="言情"/>言情&nbsp;
@@ -86,19 +86,19 @@
           </td>
         </tr>
         <tr>
-          <td>ISBN：</td>
+          <td align="right">ISBN：</td>
           <td><input type="text" name="upisbn" style="width: 250px"/></td>
         </tr>
         <tr>
-          <td>出版社：</td>
+          <td align="right">出版社：</td>
           <td><input type="text" name="uppublish" style="width: 250px"/></td>
         </tr>
         <tr>
-          <td>价格：</td>
+          <td align="right">价格：</td>
           <td><input type="text" name="upprice" style="width: 250px"/></td>
         </tr>
         <tr>
-          <td>作者：</td>
+          <td align="right">作者：</td>
           <td>
             <input type="text" name="upauthor"  id="upauthor" style="width: 250px" list="upauthorinfo"  onkeyup="select_authorinfo();"/> 
             <input type="hidden" name="upauthor_id"  id="upauthor_id" style="width: 0px"/> 
@@ -107,7 +107,7 @@
           </td>
         </tr>
         <tr>
-          <td>备注：</td>
+          <td align="right">备注：</td>
           <td><textarea id = "upmemo" name="upmemo" cols=20 rows=4 style="width: 250px"></textarea></td>
         </tr>
         <tr>
