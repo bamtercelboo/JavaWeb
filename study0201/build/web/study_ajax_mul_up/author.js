@@ -1,5 +1,5 @@
 //每页显示的数量
-var page_size = 5;
+var page_size = 6;
 //总页数
 var total_pages = 1;
 var totalpages = 0;
@@ -62,6 +62,9 @@ $(function () {
     $("input[name='authorsex']").get(0).checked = true;//设置默认
     $("input[name='authorage']").val("");
     $("#authormemo").val("");
+    //清空inputerrorcolor
+    $("input[name='authorname']").removeClass("inputerror");
+    $("input[name='authorage']").removeClass("inputerror");
     //显示增加button
     $("#add_button").show();
     //隐藏测试数据button
@@ -101,7 +104,7 @@ function search( page ) {
   var maxage = $("input[name='maxage']").val();
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/author_search.jsp",
+    url: "/study0201/study_ajax_mul_up/author_search.jsp",
     data: {
       name: name,
       authorsex: authorsex,
@@ -185,7 +188,7 @@ function select_authorinfo()
   var html = "";
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/select_authorinfo.jsp",
+    url: "/study0201/study_ajax_mul_up/select_authorinfo.jsp",
     data: {
       author_name: author_name
     },
@@ -348,7 +351,7 @@ function confirmDelete()
     if ( confirm("确认删除？") ) {
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/author_delete_function.jsp",
+        url: "/study0201/study_ajax_mul_up/author_delete_function.jsp",
         data: 'id=' + chk_value,
         dataType: 'json',
         success: function ( data ) {
@@ -417,9 +420,12 @@ function update( id )
   $("#add_button").hide();
   //隐藏测试数据button
   $("#test_button").hide();
+  //清空inputerrorcolor
+  $("input[name='authorname']").removeClass("inputerror");
+  $("input[name='authorage']").removeClass("inputerror");
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/author_select_single.jsp",
+    url: "/study0201/study_ajax_mul_up/author_select_single.jsp",
     data: {
       id: id
     },
@@ -480,7 +486,7 @@ function insert()
     if ( id == null || id == "" ) {
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/author_add_function.jsp",
+        url: "/study0201/study_ajax_mul_up/author_add_function.jsp",
         data: {
           authorname: authorname,
           authorsex: authorsex,
@@ -509,7 +515,7 @@ function insert()
     } else {
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/author_update_function.jsp",
+        url: "/study0201/study_ajax_mul_up/author_update_function.jsp",
          data: {
            id:id,
           authorname: authorname,
@@ -567,7 +573,7 @@ function test_insert()
     var memo = $("#upmemo").val();
     $.ajax({
       type: "post",
-      url: "/study0201/study_ajax_multilist/add_function.jsp",
+      url: "/study0201/study_ajax_mul_up/add_function.jsp",
       data: {
         name: name,
         status: status,

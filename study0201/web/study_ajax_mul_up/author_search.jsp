@@ -4,7 +4,7 @@
 <%  //获取总记录数
   int total_count = 0;
   //每页显示的数量
-  int PAGE_SIZE = 5;
+  int PAGE_SIZE = 6;
   int curr_page = 1;
   String page1 = request.getParameter("page");
   if ( page1 != null ) {

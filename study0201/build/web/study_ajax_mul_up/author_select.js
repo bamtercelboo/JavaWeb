@@ -1,5 +1,5 @@
 //每页显示的数量
-var authorpagesize = 5;
+var authorpagesize = 6;
 //总页数
 var total_pages = 1;
 var totalpages = 0;
@@ -106,7 +106,7 @@ function author_search( page ) {
   var maxage = $(".authorsearchparam input[name='maxage']").val();
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/author_search.jsp",
+    url: "/study0201/study_ajax_mul_up/author_search.jsp",
     data: {
       name: name,
       authorsex: authorsex,

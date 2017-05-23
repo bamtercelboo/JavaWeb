@@ -68,6 +68,12 @@ $(function () {
     $("input[name='upisbn']").val("");
     $("input[name='upauthor']").val("");
     $("#upmemo").val("");
+    //清空inputerrorcolor
+    $("input[name='upname']").removeClass("inputerror");
+    $("input[name='upprice']").removeClass("inputerror");
+    $("input[name='uppublish']").removeClass("inputerror");
+    $("input[name='upisbn']").removeClass("inputerror");
+    $("input[name='upauthor']").removeClass("inputerror");
     //显示增加button
     $("#add_button").show();
     //隐藏测试数据button
@@ -98,6 +104,12 @@ $(function () {
     $("input[name='upisbn']").val("");
     $("input[name='upauthor']").val("");
     $("#upmemo").val("");
+    //清空inputerrorcolor
+    $("input[name='upname']").removeClass("inputerror");
+    $("input[name='upprice']").removeClass("inputerror");
+    $("input[name='uppublish']").removeClass("inputerror");
+    $("input[name='upisbn']").removeClass("inputerror");
+    $("input[name='upauthor']").removeClass("inputerror");
     //显示测试button
     $("#test_button").show();
     //隐藏增加button
@@ -142,7 +154,7 @@ function search( page ) {
   var author_sex = $("select[name='author_sex']").val();
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/search.jsp",
+    url: "/study0201/study_ajax_mul_up/search.jsp",
     data: {
       name: name,
       status: status,
@@ -237,7 +249,7 @@ function select_authorinfo()
   var html = "";
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/select_authorinfo.jsp",
+    url: "/study0201/study_ajax_mul_up/select_authorinfo.jsp",
     data: {
       author_name: author_name
     },
@@ -405,7 +417,7 @@ function confirmDelete()
     if ( confirm("确认删除？") ) {
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/delete_function.jsp",
+        url: "/study0201/study_ajax_mul_up/delete_function.jsp",
         data: 'id=' + chk_value,
         dataType: 'json',
         success: function ( data ) {
@@ -474,9 +486,15 @@ function update( id )
   $("#add_button").hide();
   //隐藏测试数据button
   $("#test_button").hide();
+  //清空inputerrorcolor
+    $("input[name='upname']").removeClass("inputerror");
+    $("input[name='upprice']").removeClass("inputerror");
+    $("input[name='uppublish']").removeClass("inputerror");
+    $("input[name='upisbn']").removeClass("inputerror");
+    $("input[name='upauthor']").removeClass("inputerror");
   $.ajax({
     type: "post",
-    url: "/study0201/study_ajax_multilist/select_single.jsp",
+    url: "/study0201/study_ajax_mul_up/select_single.jsp",
     data: {
       id: id
     },
@@ -569,7 +587,7 @@ function insert()
        $(".title th").attr("sortkey","");
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/add_function.jsp",
+        url: "/study0201/study_ajax_mul_up/add_function.jsp",
         data: {
           name: name,
           status: status,
@@ -602,7 +620,7 @@ function insert()
     } else {
       $.ajax({
         type: "post",
-        url: "/study0201/study_ajax_multilist/update_function.jsp",
+        url: "/study0201/study_ajax_mul_up/update_function.jsp",
         data: {
           id: id,
           name: name,
@@ -665,7 +683,7 @@ function test_insert()
     var memo = $("#upmemo").val();
     $.ajax({
       type: "post",
-      url: "/study0201/study_ajax_multilist/add_function.jsp",
+      url: "/study0201/study_ajax_mul_up/add_function.jsp",
       data: {
         name: name,
         status: status,
