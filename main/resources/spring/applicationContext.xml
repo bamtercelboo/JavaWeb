@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.3.xsd">
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+    <property name="url" value="jdbc:mysql://localhost:3306/hibernate?serverTimezone=GMT%2B8" />
+    <property name="username" value="root" />
+    <property name="password" value="mysql" />
+    <property name="defaultReadOnly" value="false" />
+    <property name="initialSize" value="5" />
+    <property name="maxActive" value="15" />
+    <property name="maxIdle" value="10"/>
+    <property name="minIdle" value="2" />
+    <property name="maxWait" value="10000" />
+  </bean>
+  
+  <bean id="myNameMappingPhysical" class="com.nccp.mavenweb.namemapping.NameMapping">
+    <property name="tableNamePrefix" value="nccp" />
+  </bean>
+ 
+  
+  <!-- 配置我们的回话工厂-->
+  <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="physicalNamingStrategy" ref="myNameMappingPhysical" />
+    <property name="packagesToScan">
+      <list>
+        <value>com.nccp.mavenweb.domain</value>
+      </list>
+    </property>
+    <property name="hibernateProperties">
+      <props>
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+        <prop key="javax.persistence.validation.mode">none</prop>
+        <prop key="hibernate.hbm2ddl.auto">none</prop>
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="current_session_context_class">thread</prop>
+        <prop key="hibernate.format_sql">false</prop>
+      </props>
+    </property>
+  </bean>
+  
+  
+  
+  <!-- 配置一个事务管理器 -->  
+  <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">  
+    <property name="sessionFactory" ref="sessionFactory"/>  
+  </bean>
+  
+  <!-- 配置事务，使用代理的方式 -->  
+  <bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">    
+    <property name="transactionManager" ref="transactionManager"></property>   
+    <property name="proxyTargetClass" value="true"/> 
+    <property name="transactionAttributes">    
+      <props>    
+        <prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>    
+        <prop key="modify*">PROPAGATION_REQUIRED,-myException</prop>    
+        <prop key="del*">PROPAGATION_REQUIRED</prop>
+        <prop key="*">PROPAGATION_REQUIRED</prop>    
+      </props>    
+    </property>
+  </bean>
+  
+  <bean id="userDao" class="com.nccp.mavenweb.dao.impl.HibernateUserDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+  <bean id="bookDao" class="com.nccp.mavenweb.dao.impl.HibernateBookDaoImpl">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+  
+  <bean id="userModel" name="userModel" parent="transactionProxy">
+    <property name="target">
+      <bean class="com.nccp.mavenweb.model.impl.HibernateUserModelImpl">
+        <property name="dao" ref="userDao"/>
+      </bean>
+    </property>
+  </bean>
+  <bean id="bookModel" name="bookModel" parent="transactionProxy">
+    <property name="target">
+      <bean class="com.nccp.mavenweb.model.impl.HibernateBookModelImpl">
+        <property name="dao" ref="bookDao"/>
+      </bean>
+    </property>
+  </bean>
+
+<!--枚举注入-->
+<!--  <bean id="ONSALE" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+    <property name="staticField" value="com.nccp.mavenweb.domain.type.Status.ONSALE" />
+  </bean>
+  <bean id="Book" class="com.nccp.mavenweb.domain.Book">
+    <property name="status" ref="ONSALE" />
+  </bean>
+  <bean id="SOLDOUT" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+    <property name="staticField" value="com.nccp.mavenweb.domain.type.Status.SOLDOUT" />
+  </bean>
+  <bean id="Book1" class="com.nccp.mavenweb.domain.Book">
+    <property name="status" ref="SOLDOUT" />
+  </bean>-->
+
+<!--  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
+     如果不加默认到 使用classpath下的 ValidationMessages.properties 
+    <property name="validationMessageSource" ref="messageSource"/>
+  </bean>-->
+
+</beans>
